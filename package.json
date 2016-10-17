@@ -1,0 +1,56 @@
+{
+  "name": "gitbook-start-ericlucastania",
+  "version": "0.3.9",
+  "description": "Repo to start gitbook proyect",
+  "main": "index.js",
+  "scripts": {
+    "generate-gitbook": "./scripts/losh generate-gitbook",
+    "generate-wiki": "./scripts/losh generate-wiki",
+    "build": "npm install && npm i gitbook-cli && npm run generate-gitbook && npm run generate-wiki",
+    "deploy-gitbook": "./scripts/losh deploy-gitbook",
+    "deploy-wiki": "./scripts/losh deploy-wiki",
+    "deploy": "npm run build && npm run deploy-gitbook && npm run deploy-wiki",
+    "version": "./scripts/losh version",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ULL-ESIT-SYTW-1617/creacion-de-paquetes-y-modulos-en-nodejs-ericlucastania",
+    "wiki": "https://github.com/ULL-ESIT-SYTW-1617/creacion-de-paquetes-y-modulos-en-nodejs-ericlucastania/wiki"
+  },
+  "keywords": [
+    "gitbook",
+    "boilerplate",
+    "starter"
+  ],
+  "bin": {
+    "gitbook-start": "./bin/gitbook-start.js"
+  },
+  "author": "Eric Ramos, Lucas Ruiz, Tania Gonzalez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ULL-ESIT-SYTW-1617/creacion-de-paquetes-y-modulos-en-nodejs-ericlucastania/issues"
+  },
+  "homepage": "https://github.com/ULL-ESIT-SYTW-1617/creacion-de-paquetes-y-modulos-en-nodejs-ericlucastania/blob/master/README.md",
+  "devDependencies": {
+    "async": "^1.4.0",
+    "ejs": "^2.5.2",
+    "fs": "0.0.1-security",
+    "fs-extra": "^0.22.1",
+    "gh-pages": "^0.3.1",
+    "gitbook": "^2.1.0",
+    "gitbook-cli": "^0.3.4",
+    "minimist": "^1.2.0"
+  },
+  "dependencies": {
+    "async": "^1.4.0",
+    "ejs": "^2.5.2",
+    "fs": "0.0.1-security",
+    "fs-extra": "^0.22.1",
+    "gh-pages": "^0.3.1",
+    "git-config": "0.0.7",
+    "gitbook": "^2.1.0",
+    "gitbook-cli": "^0.3.4",
+    "minimist": "^1.2.0"
+  }
+}
