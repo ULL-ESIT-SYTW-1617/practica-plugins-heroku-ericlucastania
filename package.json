@@ -13,6 +13,11 @@
     "version": "./scripts/losh version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "iaas":{
+    "user": "usuario",
+    "ip": "10.6.128.159",
+    "command": "cd /home/usuario/Sytw/Styw3;git pull origin master"
+  }
   "repository": {
     "type": "git",
     "url": "https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1",
@@ -51,6 +56,8 @@
     "git-config": "0.0.7",
     "gitbook": "^2.1.0",
     "gitbook-cli": "^0.3.4",
+    "gulp": "^3.9.1",
+    "gulp-ejs": "^2.2.1",
     "minimist": "^1.2.0"
   }
 }
