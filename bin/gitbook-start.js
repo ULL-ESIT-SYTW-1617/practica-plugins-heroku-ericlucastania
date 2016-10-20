@@ -13,7 +13,7 @@ var path = require('path');
 
 
 var re = /.ejs/g;
-
+var replugin = /^gitbook-start-plugin/g;
 //Rutas interesantes
 var rutaTemplate = path.join(__dirname, '..','template');
 var rutaModules = path.join(__dirname, '..','..');
@@ -62,6 +62,8 @@ gitConfig(function (err, config) {
 	defaultemail = config.user.email;
 	(() => {
 		var names = fs.readdirSync(rutaModules);	
+		
+		names = names.match(replugin);
 		console.log(names);
 		
 	})();
