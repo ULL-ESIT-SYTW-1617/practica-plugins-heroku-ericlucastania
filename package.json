@@ -1,7 +1,7 @@
 {
 
   "name": "gitbook-start-plugin-iaas-ull-es-ericlucastania",
-  "version": "0.3.12",
+  "version": "0.3.14",
   "description": "Repo to start gitbook proyect",
   "main": "index.js",
   "scripts": {

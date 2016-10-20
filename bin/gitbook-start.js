@@ -60,7 +60,7 @@ gitConfig(function (err, config) {
 	defaultname = config.user.name;
 	defaultemail = config.user.email;
 	(() => {
-		let names = fs.readdirSync(rutaModules);	
+		var names = fs.readdirSync(rutaModules);	
 		console.log(names);
 		
 	});
