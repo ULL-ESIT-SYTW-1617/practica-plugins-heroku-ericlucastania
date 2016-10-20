@@ -63,7 +63,8 @@ gitConfig(function (err, config) {
 	(() => {
 		var correctNames = [];
 		var names = fs.readdirSync(rutaModules);	
-		names.each(i => {
+		names.forEach(i => {
+			console.log(names[i]);
 			if(names[i].match(replugin)){
 				correctNames.push(names[i]);
 			}
