@@ -107,7 +107,7 @@ gitConfig(function (err, config) {
 				if(names[i].match(re)){
 				
 					//Renderizamos el fichero
-					var data = ejs.renderFile(rutaTemplate + folder + names[i],{
+					var data = ejs.renderFile(rutaTemplate + '/' + folder + names[i],{
 						
 						autor:{
 							name: argv.a || defaultname,
@@ -134,7 +134,7 @@ gitConfig(function (err, config) {
 				}
 				else{
 					fs.mkdirsSync(direct + dir + '/' +names[i]);
-					recursive(fs.readdirSync(rutaTemplate + names[i]),names[i] + '/');
+					recursive(fs.readdirSync(rutaTemplate + '/' + names[i]),names[i] + '/');
 				}
 			}
 		};
