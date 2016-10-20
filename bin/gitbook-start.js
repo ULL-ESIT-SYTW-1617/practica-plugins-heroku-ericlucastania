@@ -54,116 +54,111 @@ sum += 2;
 }
   
 
-var p1 = new Promise(function(resolve, reject){
+gitConfig(function (err, config) {
 	
-	gitConfig(function (err, config) {
+	if(err)
+		console.log(err);
+	//opciones por defecto GitHub	
+	defaultname = config.user.name;
+	defaultemail = config.user.email;
+	
+	//ejecutar todos los initialize globales y locales
+	var rutas = (ruta) => {
+		var correctNames = [];
+		try {
+    		var names = fs.readdirSync(ruta);
+		}
+		catch(err) {
+		    
+		}
 		
-		if(err)
-			console.log(err);
-		//opciones por defecto GitHub	
-		defaultname = config.user.name;
-		defaultemail = config.user.email;
-		
-		//ejecutar todos los initialize globales y locales
-		var rutas = (ruta) => {
-			var correctNames = [];
-			try {
-	    		var names = fs.readdirSync(ruta);
-			}
-			catch(err) {
-			    
-			}
-			
-			if(names){
-				for (var i in names){
-					if(names[i].match(replugin)){
-						correctNames.push(names[i]);
-					}
+		if(names){
+			for (var i in names){
+				if(names[i].match(replugin)){
+					correctNames.push(names[i]);
 				}
 			}
-			if(correctNames.length != 0){
-				for(var j in correctNames){
-					var requireNames = require(correctNames[j]);
-					requireNames.initialize();
-				}
+		}
+		if(correctNames.length != 0){
+			for(var j in correctNames){
+				var requireNames = require(correctNames[j]);
+				requireNames.initialize();
 			}
-			
-		};
-		rutas(rutaModulesGlobal);
-		rutas(rutaModulesLocal);
+		}
 		
+	};
+	rutas(rutaModulesGlobal);
+	rutas(rutaModulesLocal);
+	
+	
+	if (flag){
 		
-		if (flag){
+		// Creamos la carpeta
+		
+		var dir = argv.dir || defaultname;
+		fs.mkdirsSync(direct + dir);
+		
+		//Ver los nombres de los archivos dentro de las carpetas
+		var names = fs.readdirSync(rutaTemplate);
+		
+		var recursive = (names,folder) => {
+			for (var i in names){
 			
-			// Creamos la carpeta
-			
-			var dir = argv.dir || defaultname;
-			fs.mkdirsSync(direct + dir);
-			
-			//Ver los nombres de los archivos dentro de las carpetas
-			var names = fs.readdirSync(rutaTemplate);
-			
-			var recursive = (names,folder) => {
-				for (var i in names){
+				if(names[i].match(re)){
 				
-					if(names[i].match(re)){
+					//Renderizamos el fichero
+					var data = ejs.renderFile(rutaTemplate + '/' + folder + names[i],{
+						
+						autor:{
+							name: argv.a || defaultname,
+							email: argv.e || defaultemail
+						}
+						
+					},(err,data) => {
+						if(err){
+							throw err;
+							
+						} else{
+							return data;
+							
+						}
+					});
 					
-						//Renderizamos el fichero
-						var data = ejs.renderFile(rutaTemplate + '/' + folder + names[i],{
-							
-							autor:{
-								name: argv.a || defaultname,
-								email: argv.e || defaultemail
-							}
-							
-						},(err,data) => {
-							if(err){
-								throw err;
-								
-							} else{
-								return data;
-								
-							}
-						});
-						
-						//Sustituimos el nombre, para quitarle la extensión ejs
-						
-						var newstr = names[i].replace(re, '');
-					   
-						fs.writeFile(direct + dir + '/' + folder + newstr, data, (err) => {
-						  if (err) throw err;
-						});
-					}
-					else{
-						fs.mkdirsSync(direct + dir + '/' +names[i]);
-						recursive(fs.readdirSync(rutaTemplate + '/' + names[i]),names[i] + '/');
-					}
+					//Sustituimos el nombre, para quitarle la extensión ejs
+					
+					var newstr = names[i].replace(re, '');
+				   
+					fs.writeFile(direct + dir + '/' + folder + newstr, data, (err) => {
+					  if (err) throw err;
+					});
 				}
-			};
-			
-			recursive(names,'');
-			finish = true;
-		}
+				else{
+					fs.mkdirsSync(direct + dir + '/' +names[i]);
+					recursive(fs.readdirSync(rutaTemplate + '/' + names[i]),names[i] + '/');
+				}
+			}
+		};
 		
-		
-		else {
-			console.log("gitbook-start [OPTIONS]\n"+
-			"-dir nombre del directorio a crear node gitbook-star -d miDirectorio\n"+
-			"-a autor del libro a crear node gitbook-star -a AutorDelLibro\n"+
-			"-e email del autor del libro node gitbook-star -e eric.ramos.suarez@gmail.com\n"+
-			"-r repositorio github contra el que se va a trabajar -r nameRepo\n"+
-			"-d --deploy deploy en el que se quiera ejecutar gitbook-star -d iaas\n"+
-			"-h muestra ayuda sobre las opciones disponibles\n");
-		}
-	});
-});
-
-p1.then(function(value){
-
+		recursive(names,'');
+		finish = true;
+	}
+	
+	
+	else {
+		console.log("gitbook-start [OPTIONS]\n"+
+		"-dir nombre del directorio a crear node gitbook-star -d miDirectorio\n"+
+		"-a autor del libro a crear node gitbook-star -a AutorDelLibro\n"+
+		"-e email del autor del libro node gitbook-star -e eric.ramos.suarez@gmail.com\n"+
+		"-r repositorio github contra el que se va a trabajar -r nameRepo\n"+
+		"-d --deploy deploy en el que se quiera ejecutar gitbook-star -d iaas\n"+
+		"-h muestra ayuda sobre las opciones disponibles\n");
+	}
+	
+	
 	//deploys
 	var deploy = argv.d || argv.deploy;
 	
-	if(deploy){
+	if(deploy && finish){
 		var correctNames;
 		var rutasDeploy = (ruta) => {
 			var concidence = [];
@@ -192,7 +187,9 @@ p1.then(function(value){
 		rutasDeploy(rutaModulesLocal);
 	}
 	
+	
 });
+
 
 	
 
