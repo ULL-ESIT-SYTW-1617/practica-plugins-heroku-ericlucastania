@@ -11,7 +11,7 @@ var gitConfig = require('git-config');
 
 var re = /.ejs/g;
 var replugin = /^gitbook-start-plugin/g;
-
+var dep = '/'+ argv.deploy + '/';
 //Rutas interesantes
 var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
 
