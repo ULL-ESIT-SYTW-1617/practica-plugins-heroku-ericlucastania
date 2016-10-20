@@ -6,24 +6,31 @@ import path from 'path';
 import ejs from 'ejs';
 import fs from 'fs-extra';
 var argv = require('minimist')(process.argv.slice(2));
-import gitConfig from 'git-config';
-import exec from 'child_process';
+var gitConfig = require('git-config');
+var exec = require('child_process').exec;
 
-//Variables
 
-var direct = process.cwd() + '/';
+
 var re = /.ejs/g;
 var ruta = path.join(__dirname);
 var opcionesValidas = ['d', 'a', 'r', 'i', 'f', 'w'];
-var defaultname = exec('whoami');
-var defaultautor;
-var defaultdir = exec('whoami');
-console.log(defaultname);
+var flag = true;
+var sum=0;
+var defaultname;
 
+var p1 = new Promise((resolve, reject) => {
+    exec("whoami", (error, stdout, stderr) => {
+          if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+          }
+             resolve(stdout);  
+    });
+});
 
-
-/*
-
+p1.then(function(value){
+  defaultname = value;
+});
 
 
 function comprobarOpcion(opc) {
@@ -36,8 +43,6 @@ function comprobarOpcion(opc) {
 
 
 
-var flag = true;
-var sum=0;
 for (var i in argv) {
     if ((sum !=0) && (sum%2 == 0)) {
         if(comprobarOpcion(i)==false){
@@ -50,14 +55,20 @@ for (var i in argv) {
 
 
 
+
+
+/*
+var defaultautor;
+var defaultdir;
+
+
 gitConfig(function (err, config) {
-    if(err){
-        console.log(err);
-    }
-    else{
-        defaultautor = config.user.name;
-        console.log (defaultautor);
-    }
+    
+  if(err)
+    console.log(err);
+
+  defaultautor = config.user.name;
+  console.log (defaultautor);
   
 
     if (flag){
