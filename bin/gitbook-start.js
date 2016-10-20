@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 
-//imports
 
+/*
 import path from 'path';
 import ejs from 'ejs';
 import fs from 'fs-extra';
 var argv = require('minimist')(process.argv.slice(2));
 var gitConfig = require('git-config');
+*/
 var exec = require('child_process').exec;
-
+var path = require('path');
 
 
 var re = /.ejs/g;
@@ -33,7 +34,7 @@ p1.then(function(value){
   defaultname = value;
 });
 
-
+/*
 function comprobarOpcion(opc) {
     for (var i=0; i<opcionesValidas.length; i++) {
         if ((opcionesValidas[i] == opc))
@@ -55,10 +56,6 @@ for (var i in argv) {
 }
 
 
-
-
-
-/*
 var defaultautor;
 var defaultdir;
 
