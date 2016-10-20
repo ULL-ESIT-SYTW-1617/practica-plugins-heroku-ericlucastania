@@ -1,6 +1,7 @@
 {
+
   "name": "gitbook-start-plugin-iaas-ull-es-ericlucastania",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Repo to start gitbook proyect",
   "main": "index.js",
   "scripts": {
@@ -25,8 +26,8 @@
   },
   "keywords": [
     "gitbook",
-    "boilerplate",
-    "starter"
+    "start",
+    "ericlucastania"
   ],
   "bin": {
     "gitbook-start": "./bin/gitbook-start.js"
