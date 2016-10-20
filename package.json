@@ -1,6 +1,6 @@
 {
   "name": "gitbook-start-ericlucastania",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "Repo to start gitbook proyect",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "user": "usuario",
     "ip": "10.6.128.159",
     "command": "cd /home/usuario/Sytw/Styw3;git pull origin master"
-  }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1",
@@ -25,8 +25,8 @@
   },
   "keywords": [
     "gitbook",
-    "boilerplate",
-    "starter"
+    "start",
+    "ericlucastania"
   ],
   "bin": {
     "gitbook-start": "./bin/gitbook-start.js"
