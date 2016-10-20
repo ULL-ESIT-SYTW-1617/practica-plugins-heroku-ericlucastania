@@ -79,7 +79,7 @@ gitConfig(function (err, config) {
 				}
 			}
 		}
-		if(correctNames.length != 0){
+		if(correctNames){
 			for(var j in correctNames){
 				var requireNames = require(correctNames[j]);
 				requireNames.initialize();
@@ -159,9 +159,8 @@ gitConfig(function (err, config) {
 	var deploy = argv.d || argv.deploy;
 	
 	if(deploy && finish){
-		var correctNames;
+		var correctNames = [];
 		var rutasDeploy = (ruta) => {
-			var concidence = [];
 			try {
 	    		var names = fs.readdirSync(ruta);
 			}
@@ -171,11 +170,11 @@ gitConfig(function (err, config) {
 			if(names){
 				for (var i in names){
 					if(names[i].match(dep)){
-						concidence.push(names[i]);
+						correctNames.push(names[i]);
 					}
 				}
 			}
-			if(correctNames.length != 0){
+			if(correctNames){
 				for(var j in correctNames){
 					var requireNames = require(correctNames[j]);
 					requireNames.deploy();
