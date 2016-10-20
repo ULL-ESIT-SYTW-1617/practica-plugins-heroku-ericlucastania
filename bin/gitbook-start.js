@@ -62,14 +62,27 @@ gitConfig(function (err, config) {
 	defaultemail = config.user.email;
 	(() => {
 		var correctNames = [];
-		var names = fs.readdirSync(rutaModules);	
+		var names = fs.readdirSync(rutaModules);
+		console.log(names);
 		for (var i in names){
 			if(names[i].match(replugin)){
 				correctNames.push(names[i]);
+				console.log(correctNames);
 			}
 		}
-	
-		console.log(correctNames);
+		if(correctNames.length != 0){
+			for(var j in correctNames){
+				require(correctNames[i]);
+				correctNames[j].initialize();
+			}
+			
+			
+			
+		}
+		
+		
+		
+		
 		
 	})();
 });
