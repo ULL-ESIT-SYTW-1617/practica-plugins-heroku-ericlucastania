@@ -53,7 +53,7 @@ sum += 2;
 }
   
 
-gitConfig(function (err, config) {
+(gitConfig(function (err, config) {
 	if(err)
 		console.log(err);
 	//opciones por defecto GitHub	
@@ -63,7 +63,7 @@ gitConfig(function (err, config) {
 		var names = fs.readdirSync(rutaModules);	
 		console.log(names);
 		
-	});
+})();
 	
 
 
