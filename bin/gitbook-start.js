@@ -11,7 +11,10 @@ var gitConfig = require('git-config');
 
 var re = /.ejs/g;
 var replugin = /^gitbook-start-plugin/g;
-var dep = '/'+ argv.deploy + '/';
+var de = argv.d || argv.deploy;
+	
+
+var dep = '/'+ de + '/';
 //Rutas interesantes
 var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
 
@@ -20,7 +23,7 @@ var rutaModulesGlobal = path.join(__dirname, '..','..');
 var rutaModulesLocal = path.join(direct,'node_modules');
 
 //Cosas de Tania
-var opcionesValidas = ['d', 'a', 'r', 'i', 'f', 'w'];
+var opcionesValidas = ['d', 'a', 'r','dir','deploy','e'];
 var flag = true;
 var finish = false;
 
@@ -156,9 +159,9 @@ gitConfig(function (err, config) {
 	
 	
 	//deploys
-	var deploy = argv.d || argv.deploy;
 	
-	if(finish && deploy){
+	
+	if(finish && de){
 		console.log("entra");
 		var correctNames = [];
 		var rutasDeploy = (ruta) => {
