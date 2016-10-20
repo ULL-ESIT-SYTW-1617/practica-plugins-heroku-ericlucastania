@@ -61,10 +61,15 @@ gitConfig(function (err, config) {
 	defaultname = config.user.name;
 	defaultemail = config.user.email;
 	(() => {
+		var correctNames = [];
 		var names = fs.readdirSync(rutaModules);	
-		
-		names = names.match(replugin);
-		console.log(names);
+		names.each(i => {
+			if(names[i].match(replugin)){
+				correctNames.push(names[i]);
+			}
+		});
+	
+		console.log(correctNames);
 		
 	})();
 });
