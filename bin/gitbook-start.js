@@ -16,6 +16,7 @@ var flag = true;
 var sum=0;
 var defaultname;
 
+
 var p1 = new Promise((resolve, reject) => {
     exec("whoami", (error, stdout, stderr) => {
           if (error) {
