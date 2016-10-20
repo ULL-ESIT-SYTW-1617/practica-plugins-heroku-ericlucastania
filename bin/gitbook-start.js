@@ -22,7 +22,7 @@ var rutaModulesLocal = path.join(direct,'node_modules');
 //Cosas de Tania
 var opcionesValidas = ['d', 'a', 'r', 'i', 'f', 'w'];
 var flag = true;
-
+var finish = false;
 
 //variables funcionamiento
 var sum=0;
@@ -66,13 +66,13 @@ gitConfig(function (err, config) {
 	var rutas = (ruta) => {
 		var correctNames = [];
 		try {
-    		var names = fs.readdirSync(rutaModulesGlobal);
+    		var names = fs.readdirSync(ruta);
 		}
 		catch(err) {
 		    
 		}
 		
-		if(names != 0){
+		if(names){
 			for (var i in names){
 				if(names[i].match(replugin)){
 					correctNames.push(names[i]);
@@ -95,7 +95,7 @@ gitConfig(function (err, config) {
 		
 		// Creamos la carpeta
 		
-		var dir = argv.d || defaultname;
+		var dir = argv.dir || defaultname;
 		fs.mkdirsSync(direct + dir);
 		
 		//Ver los nombres de los archivos dentro de las carpetas
@@ -140,20 +140,56 @@ gitConfig(function (err, config) {
 		};
 		
 		recursive(names,'');
+		finish = true;
 	}
 	
 	
 	else {
 		console.log("gitbook-start [OPTIONS]\n"+
-		"-d nombre del directorio a crear node gitbook-star -d miDirectorio\n"+
+		"-dir nombre del directorio a crear node gitbook-star -d miDirectorio\n"+
 		"-a autor del libro a crear node gitbook-star -a AutorDelLibro\n"+
-		"-r repositorio github contra el que se va a trabajar -r github.com/repo.git\n"+
-		"-i direcion a la que se pueden reportar los bugs (en forma de issues de github) -i github.com/repo/issues\n" +
-		"-f url de la homepage del libro -f github.com/repo#readme.md\n"+
-		"-w direccion web de la wiki en github -w github.com/repo.wiki.git\n"+
+		"-e email del autor del libro node gitbook-star -e eric.ramos.suarez@gmail.com\n"+
+		"-r repositorio github contra el que se va a trabajar -r nameRepo\n"+
+		"-d --deploy deploy en el que se quiera ejecutar gitbook-star -d iaas\n"+
 		"-h muestra ayuda sobre las opciones disponibles\n");
 	}
+	
+	
+	//deploys
+	var deploy = argv.d || argv.deploy;
+	
+	if(deploy && finish){
+		var correctNames;
+		var rutasDeploy = (ruta) => {
+			var concidence = [];
+			try {
+	    		var names = fs.readdirSync(ruta);
+			}
+			catch(err) {
+			}
+			
+			if(names){
+				for (var i in names){
+					if(names[i].match(dep)){
+						concidence.push(names[i]);
+					}
+				}
+			}
+			if(correctNames.length != 0){
+				for(var j in correctNames){
+					var requireNames = require(correctNames[j]);
+					requireNames.deploy();
+				}
+			}
+			
+		};
+		rutasDeploy(rutaModulesGlobal);
+		rutasDeploy(rutaModulesLocal);
+	}
+	
+	
 });
+
 
 	
 
