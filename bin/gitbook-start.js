@@ -14,9 +14,13 @@ var path = require('path');
 
 var re = /.ejs/g;
 var replugin = /^gitbook-start-plugin/g;
+
 //Rutas interesantes
+var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
+
 var rutaTemplate = path.join(__dirname, '..','template');
-var rutaModules = path.join(__dirname, '..','..');
+var rutaModulesGlobal = path.join(__dirname, '..','..');
+var rutaModulesLocal = path.join(direct ,'..' ,'node_modules');
 
 //Cosas de Tania
 var opcionesValidas = ['d', 'a', 'r', 'i', 'f', 'w'];
@@ -60,9 +64,11 @@ gitConfig(function (err, config) {
 	//opciones por defecto GitHub	
 	defaultname = config.user.name;
 	defaultemail = config.user.email;
+	/*
+	//ejecutar todos los initialize globales
 	(() => {
 		var correctNames = [];
-		var names = fs.readdirSync(rutaModules);
+		var names = fs.readdirSync(rutaModulesGlobal);
 		for (var i in names){
 			if(names[i].match(replugin)){
 				correctNames.push(names[i]);
@@ -73,21 +79,31 @@ gitConfig(function (err, config) {
 				var requireNames = require(correctNames[j]);
 				requireNames.initialize();
 			}
-			
-			
-			
 		}
 		
-		
-		
-		
+	})();*/
+	
+	//ejecutar todos los initialize locales
+	
+	(() => {
+		var correctNames = [];
+		var names = fs.readdirSync(rutaModulesLocal);
+		for (var i in names){
+			if(names[i].match(replugin)){
+				correctNames.push(names[i]);
+			}
+		}
+		if(correctNames.length != 0){
+			for(var j in correctNames){
+				var requireNames = require(correctNames[j]);
+				requireNames.initialize();
+			}
+		}
 		
 	})();
-});
 	
-
-/* 
-
+});
+/*
 	if (flag){
 		var autor = argv.a || defaultautor;
 		
@@ -97,7 +113,7 @@ gitConfig(function (err, config) {
 		fs.mkdirsSync(direct + dir);
 		
 		//Ver los nombres de los archivos dentro de las carpetas
-		var names = fs.readdirSync(ruta + '/..' + '/template/');
+		var names = fs.readdirSync(rutaTemplate);
 		
 		var recursive = (names,folder) => {
 			for (var i in names){
@@ -105,7 +121,7 @@ gitConfig(function (err, config) {
 				if(names[i].match(re)){
 				
 					//Renderizamos el fichero
-					var data = ejs.renderFile(ruta + '/..' + '/template/' + folder + names[i],{
+					var data = ejs.renderFile(rutaTemplate + folder + names[i],{
 						
 						autor:{
 							name: autor,
