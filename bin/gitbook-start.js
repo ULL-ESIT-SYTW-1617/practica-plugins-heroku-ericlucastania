@@ -20,7 +20,7 @@ var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
 
 var rutaTemplate = path.join(__dirname, '..','template');
 var rutaModulesGlobal = path.join(__dirname, '..','..');
-var rutaModulesLocal = path.join(direct ,'..' ,'node_modules');
+var rutaModulesLocal = path.join(direct,'node_modules');
 
 //Cosas de Tania
 var opcionesValidas = ['d', 'a', 'r', 'i', 'f', 'w'];
