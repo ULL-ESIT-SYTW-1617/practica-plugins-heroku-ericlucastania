@@ -16,7 +16,7 @@ var re = /.ejs/g;
 
 //Rutas interesantes
 var rutaTemplate = path.join(__dirname, '..','template');
-var rutaModules = path.join(__dirname, '..','node_modules');
+var rutaModules = path.join(__dirname, '..','..');
 
 //Cosas de Tania
 var opcionesValidas = ['d', 'a', 'r', 'i', 'f', 'w'];
@@ -53,7 +53,8 @@ sum += 2;
 }
   
 
-(gitConfig(function (err, config) {
+gitConfig(function (err, config) {
+	
 	if(err)
 		console.log(err);
 	//opciones por defecto GitHub	
@@ -63,16 +64,11 @@ sum += 2;
 		var names = fs.readdirSync(rutaModules);	
 		console.log(names);
 		
-})();
+	})();
+});
 	
 
-
-
-
-
-
-});
- /*
+/* 
 
 	if (flag){
 		var autor = argv.a || defaultautor;
