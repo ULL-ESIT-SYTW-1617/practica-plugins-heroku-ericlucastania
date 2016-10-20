@@ -5,13 +5,39 @@ var ejs = require('ejs');
 var fs = require ('fs-extra');
 var argv = require('minimist')(process.argv.slice(2));
 var gitConfig = require('git-config');
-//var tania = require('lucas');
-// expresión regular que caza con .ejs
-var direct = process.cwd() + '/';
+var exec = require('child_process').exec;
+
+
+
 var re = /.ejs/g;
 var ruta = path.join(__dirname);
-
 var opcionesValidas = ['d', 'a', 'r', 'i', 'f', 'w'];
+var flag = true;
+var sum=0;
+var defaultname;
+
+var p1 = new Promise((resolve, reject) => {
+    exec("whoami", (error, stdout, stderr) => {
+          if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+          }
+             resolve(stdout);  
+    });
+});
+
+p1.then(function(value){
+  defaultname = value;
+});
+
+
+
+
+
+
+
+
+
 
 function comprobarOpcion(opc) {
     for (var i=0; i<opcionesValidas.length; i++) {
@@ -21,8 +47,7 @@ function comprobarOpcion(opc) {
     return false;
 }
 
-var flag = true;
-var sum=0;
+
 for (var i in argv) {
     if ((sum !=0) && (sum%2 == 0)) {
         if(comprobarOpcion(i)==false){
@@ -31,15 +56,23 @@ for (var i in argv) {
         }
     }
     sum += 2;
-};
-var defaultname;
+}
+
+
+
+
+
+/*
 var defaultautor;
-var defaultdir = "mi_libro";
+var defaultdir;
 
 
 gitConfig(function (err, config) {
+    
+  if(err)
+    console.log(err);
+
   defaultautor = config.user.name;
- // defaultautor = config.github.user;
   console.log (defaultautor);
   
 
@@ -111,3 +144,4 @@ else {
 }
 })
 
+*/
