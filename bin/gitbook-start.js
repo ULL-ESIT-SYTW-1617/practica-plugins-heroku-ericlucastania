@@ -158,7 +158,8 @@ gitConfig(function (err, config) {
 	//deploys
 	var deploy = argv.d || argv.deploy;
 	
-	if(deploy && finish){
+	if(finish && deploy){
+		console.log("entra");
 		var correctNames = [];
 		var rutasDeploy = (ruta) => {
 			try {
@@ -170,6 +171,7 @@ gitConfig(function (err, config) {
 			if(names){
 				for (var i in names){
 					if(names[i].match(dep)){
+						console.log("casa expresion regular");
 						correctNames.push(names[i]);
 					}
 				}
@@ -182,7 +184,6 @@ gitConfig(function (err, config) {
 			}
 			
 		};
-		rutasDeploy(rutaModulesGlobal);
 		rutasDeploy(rutaModulesLocal);
 	}
 	
