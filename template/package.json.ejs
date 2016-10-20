@@ -1,7 +1,8 @@
 {
   "name": "<%= autor.name %>",
+  "email": "<%= autor.email %>",
   "version": "0.0.1",
-  "description": "GitBook Boilerplate",
+  "description": "Gitbook Start",
   "main": "index.js",
   "scripts": {
     "generate-gitbook": "./scripts/losh generate-gitbook",
@@ -15,20 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "<%= autor.repourl %>",
-    "wiki": "<%= autor.wikiurl %>"
+    "url": "https://github.com/<%= autor.github %>/<%= autor.repourl %>.git",
   },
   "keywords": [
     "gitbook",
-    "boilerplate",
-    "starter"
+    "start",
+    "ericlucastania"
   ],
   "author": "<%= autor.name %>",
   "license": "MIT",
-  "bugs": {
-    "url": "<%= autor.issuesurl %>"
-  },
-  "homepage": "<%= autor.readmeurl %>",
   "devDependencies": {
     "async": "^1.4.0",
     "fs-extra": "^0.22.1",

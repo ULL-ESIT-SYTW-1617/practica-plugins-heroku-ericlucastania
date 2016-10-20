@@ -8,9 +8,6 @@ var fs = require('fs-extra');
 var argv = require('minimist')(process.argv.slice(2));
 var gitConfig = require('git-config');
 
-var exec = require('child_process').exec;
-var path = require('path');
-
 
 var re = /.ejs/g;
 var replugin = /^gitbook-start-plugin/g;
@@ -64,14 +61,22 @@ gitConfig(function (err, config) {
 	//opciones por defecto GitHub	
 	defaultname = config.user.name;
 	defaultemail = config.user.email;
-	/*
-	//ejecutar todos los initialize globales
-	(() => {
+	
+	//ejecutar todos los initialize globales y locales
+	var rutas = (ruta) => {
 		var correctNames = [];
-		var names = fs.readdirSync(rutaModulesGlobal);
-		for (var i in names){
-			if(names[i].match(replugin)){
-				correctNames.push(names[i]);
+		try {
+    		var names = fs.readdirSync(rutaModulesGlobal);
+		}
+		catch(err) {
+		    
+		}
+		
+		if(names != 0){
+			for (var i in names){
+				if(names[i].match(replugin)){
+					correctNames.push(names[i]);
+				}
 			}
 		}
 		if(correctNames.length != 0){
@@ -81,35 +86,16 @@ gitConfig(function (err, config) {
 			}
 		}
 		
-	})();*/
+	};
+	rutas(rutaModulesGlobal);
+	rutas(rutaModulesLocal);
 	
-	//ejecutar todos los initialize locales
 	
-	(() => {
-		var correctNames = [];
-		var names = fs.readdirSync(rutaModulesLocal);
-		for (var i in names){
-			if(names[i].match(replugin)){
-				correctNames.push(names[i]);
-			}
-		}
-		if(correctNames.length != 0){
-			for(var j in correctNames){
-				var requireNames = require(correctNames[j]);
-				requireNames.initialize();
-			}
-		}
-		
-	})();
-	
-});
-/*
 	if (flag){
-		var autor = argv.a || defaultautor;
 		
 		// Creamos la carpeta
 		
-		var dir = argv.d || defaultdir;
+		var dir = argv.d || defaultname;
 		fs.mkdirsSync(direct + dir);
 		
 		//Ver los nombres de los archivos dentro de las carpetas
@@ -124,11 +110,8 @@ gitConfig(function (err, config) {
 					var data = ejs.renderFile(rutaTemplate + folder + names[i],{
 						
 						autor:{
-							name: autor,
-							repourl: argv.r,
-							issuesurl: argv.i,
-							readmeurl: argv.f,
-							wikiurl: argv.w
+							name: argv.a || defaultname,
+							email: argv.e || defaultemail
 						}
 						
 					},(err,data) => {
@@ -141,7 +124,7 @@ gitConfig(function (err, config) {
 						}
 					});
 					
-					//sustituimos el nombre, para quitarle la extensión ejs
+					//Sustituimos el nombre, para quitarle la extensión ejs
 					
 					var newstr = names[i].replace(re, '');
 				   
@@ -151,7 +134,7 @@ gitConfig(function (err, config) {
 				}
 				else{
 					fs.mkdirsSync(direct + dir + '/' +names[i]);
-					recursive(fs.readdirSync(ruta + '/..' + '/template/' + names[i]),names[i] + '/');
+					recursive(fs.readdirSync(rutaTemplate + names[i]),names[i] + '/');
 				}
 			}
 		};
@@ -170,5 +153,7 @@ gitConfig(function (err, config) {
 		"-w direccion web de la wiki en github -w github.com/repo.wiki.git\n"+
 		"-h muestra ayuda sobre las opciones disponibles\n");
 	}
-});*/
+});
+
+	
 
