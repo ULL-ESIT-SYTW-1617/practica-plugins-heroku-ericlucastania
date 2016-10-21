@@ -79,8 +79,8 @@ gitConfig(function (err, config) {
 		
 		
 		//ejecutar todos los initialize globales y locales si no hay argumentos
-		
-		if(argv.length == 0 || argv.dir){
+		console.log(argv.length);
+		if(argv.length == undefined || argv.dir){
 			
 			var rutas = (ruta) => {
 				var correctNames = [];
