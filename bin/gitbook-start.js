@@ -174,9 +174,7 @@ gitConfig(function (err, config) {
 						if(names[i].match(dep)){
 							correctNames.push(names[i]);
 						}
-						else{
-							console.log("No se ha encontrado plugins de despliegue con este nombre");
-						}
+					
 					}
 				}
 				if(correctNames){
@@ -185,6 +183,11 @@ gitConfig(function (err, config) {
 						requireNames.deploy();
 					}
 				}
+					else{
+							console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
+							"Sitúese en el libro."+
+							"Compruebe que hay plugins instalados\n");
+						}
 				
 			};
 			rutasDeploy(rutaModulesLocal);
@@ -195,7 +198,7 @@ gitConfig(function (err, config) {
 	
 	else {
 		console.log("gitbook-start [OPTIONS]\n"+
-		"-dir nombre del directorio a crear node gitbook-star -d miDirectorio\n"+
+		"-dir nombre del directorio a crear node gitbook-star -dir miDirectorio\n"+
 		"-a autor del libro a crear node gitbook-star -a AutorDelLibro\n"+
 		"-e email del autor del libro node gitbook-star -e eric.ramos.suarez@gmail.com\n"+
 		"-r repositorio github contra el que se va a trabajar -r nameRepo\n"+
