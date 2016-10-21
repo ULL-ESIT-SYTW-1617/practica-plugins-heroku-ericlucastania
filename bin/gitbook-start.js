@@ -164,12 +164,10 @@ gitConfig(function (err, config) {
 	
 	
 	if(finish && de){
-		console.log("entra");
 		var correctNames = [];
 		var rutasDeploy = (ruta) => {
 			try {
 	    		var names = fs.readdirSync(ruta);
-	    		console.log(names);
 			}
 			catch(err) {
 			}
@@ -190,6 +188,7 @@ gitConfig(function (err, config) {
 			
 		};
 		rutasDeploy(rutaModulesLocal);
+		rutasDeploy(rutaModulesGlobal);
 	}
 	
 	
