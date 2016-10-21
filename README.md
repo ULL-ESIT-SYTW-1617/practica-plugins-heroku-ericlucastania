@@ -57,4 +57,10 @@ de una estructura para gitbook.
 
 
 
+## Enlaces interesantes 
+
+
+* [Enlace al Repositorio de la práctica](https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1)
+* [Enlace a gitbook-start-plugin-iaas-ull-es](https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-plugin-iaas-ull-es-ericlucastania)
+
 
