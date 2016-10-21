@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
 
-var pck = require(path.join(__dirname, '..','package.json'));
+
 var path = require('path');
 var ejs = require('ejs');
 var fs = require('fs-extra');
 var argv = require('minimist')(process.argv.slice(2));
+var pck = require(path.join(__dirname, '..','package.json'));
 var gitConfig = require('git-config');
 
 
