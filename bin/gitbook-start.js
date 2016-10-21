@@ -180,8 +180,8 @@ gitConfig(function (err, config) {
 				}
 				else{
 					console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
-						"Sitúese en el libro."+
-						"Compruebe que hay plugins instalados\n");
+						"  Sitúese en el libro.\n"+
+						"  Compruebe que hay plugins instalados\n");
 				}
 				if(correctNames){
 					for(var j in correctNames){
