@@ -184,8 +184,13 @@ gitConfig(function (err, config) {
 				}
 				if(correctNames){
 					for(var j in correctNames){
-						var requireNames = require(correctNames[j]);
-						requireNames.deploy();
+						try {
+				    		var requireNames = require(correctNames[j]);
+				    		requireNames.deploy();
+						}
+						catch(err) {
+							console.log("No se ha podido encontrar el modulo");
+						}
 					}
 				}
 				
