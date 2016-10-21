@@ -167,12 +167,15 @@ gitConfig(function (err, config) {
 		var rutasDeploy = (ruta) => {
 			try {
 	    		var names = fs.readdirSync(ruta);
+	    		console.log(names);
 			}
 			catch(err) {
 			}
 			
 			if(names){
 				for (var i in names){
+					console.log("Resultado = ");
+					console.log(names[i].match(dep));
 					if(names[i].match(dep)){
 						console.log("casa expresion regular");
 						correctNames.push(names[i]);
