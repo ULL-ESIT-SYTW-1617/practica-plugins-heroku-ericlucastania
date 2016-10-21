@@ -108,57 +108,57 @@ gitConfig(function (err, config) {
 			};
 			rutas(rutaModulesGlobal);
 			rutas(rutaModulesLocal);
-		}
 		
-		// Creamos la carpeta
 		
-		var dir = argv.dir || defaultname;
-		fs.mkdirsSync(direct + dir);
-		
-		//Ver los nombres de los archivos dentro de las carpetas
-		var names = fs.readdirSync(rutaTemplate);
-		
-		var recursive = (names,folder) => {
-			for (var i in names){
+			// Creamos la carpeta
 			
-				if(names[i].match(re)){
+			var dir = argv.dir || defaultname;
+			fs.mkdirsSync(direct + dir);
+			
+			//Ver los nombres de los archivos dentro de las carpetas
+			var names = fs.readdirSync(rutaTemplate);
+			
+			var recursive = (names,folder) => {
+				for (var i in names){
 				
-					//Renderizamos el fichero
-					var data = ejs.renderFile(rutaTemplate + '/' + folder + names[i],{
-						
-						autor:{
-							name: argv.a || defaultname,
-							email: argv.e || defaultemail
-						}
-						
-					},(err,data) => {
-						if(err){
-							throw err;
-							
-						} else{
-							return data;
-							
-						}
-					});
+					if(names[i].match(re)){
 					
-					//Sustituimos el nombre, para quitarle la extensión ejs
-					
-					var newstr = names[i].replace(re, '');
-				   
-					fs.writeFile(direct + dir + '/' + folder + newstr, data, (err) => {
-					  if (err) throw err;
-					});
+						//Renderizamos el fichero
+						var data = ejs.renderFile(rutaTemplate + '/' + folder + names[i],{
+							
+							autor:{
+								name: argv.a || defaultname,
+								email: argv.e || defaultemail
+							}
+							
+						},(err,data) => {
+							if(err){
+								throw err;
+								
+							} else{
+								return data;
+								
+							}
+						});
+						
+						//Sustituimos el nombre, para quitarle la extensión ejs
+						
+						var newstr = names[i].replace(re, '');
+					   
+						fs.writeFile(direct + dir + '/' + folder + newstr, data, (err) => {
+						  if (err) throw err;
+						});
+					}
+					else{
+						fs.mkdirsSync(direct + dir + '/' +names[i]);
+						recursive(fs.readdirSync(rutaTemplate + '/' + names[i]),names[i] + '/');
+					}
 				}
-				else{
-					fs.mkdirsSync(direct + dir + '/' +names[i]);
-					recursive(fs.readdirSync(rutaTemplate + '/' + names[i]),names[i] + '/');
-				}
-			}
-		};
-		
-		recursive(names,'');
-		finish = true;
-		
+			};
+			
+			recursive(names,'');
+			finish = true;
+		}
 		//deploys
 		if(de){
 			var correctNames = [];
