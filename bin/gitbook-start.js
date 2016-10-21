@@ -27,7 +27,6 @@ var rutaModulesLocal = path.join(direct,'node_modules');
 //Cosas de Tania
 var opcionesValidas = ['d', 'a', 'r','dir','deploy','e','v'];
 var flag = true;
-var finish = false;
 
 //variables funcionamiento
 var sum=0;
@@ -158,7 +157,6 @@ gitConfig(function (err, config) {
 			};
 			
 			recursive(names,'');
-			finish = true;
 		}
 		//deploys
 		else if(de){
@@ -201,7 +199,7 @@ gitConfig(function (err, config) {
 	
 	else {
 		console.log("gitbook-start [OPTIONS]\n"+
-		"-dir nombre del directorio a crear node gitbook-star -dir miDirectorio\n"+
+		"--dir nombre del directorio a crear node gitbook-star --dir miDirectorio\n"+
 		"-a autor del libro a crear node gitbook-star -a AutorDelLibro\n"+
 		"-e email del autor del libro node gitbook-star -e eric.ramos.suarez@gmail.com\n"+
 		"-r repositorio github contra el que se va a trabajar -r nameRepo\n"+
