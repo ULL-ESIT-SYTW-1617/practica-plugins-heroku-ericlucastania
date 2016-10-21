@@ -17,7 +17,6 @@ var de = argv.d || argv.deploy;
 
 var del = 'gitbook-start-plugin-'+ de;
 var dep = new RegExp(del);
-console.log(dep);
 //Rutas interesantes
 var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
 
@@ -177,11 +176,7 @@ gitConfig(function (err, config) {
 			
 			if(names){
 				for (var i in names){
-					console.log("Resultado = ");
-					console.log(names[i].match(dep));
-					console.log(dep);
 					if(names[i].match(dep)){
-						console.log("casa expresion regular");
 						correctNames.push(names[i]);
 					}
 				}
