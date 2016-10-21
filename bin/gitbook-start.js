@@ -176,6 +176,12 @@ gitConfig(function (err, config) {
 						}
 					
 					}
+					
+				}
+				else{
+					console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
+						"Sitúese en el libro."+
+						"Compruebe que hay plugins instalados\n");
 				}
 				if(correctNames){
 					for(var j in correctNames){
@@ -183,11 +189,7 @@ gitConfig(function (err, config) {
 						requireNames.deploy();
 					}
 				}
-				else{
-					console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
-						"Sitúese en el libro."+
-						"Compruebe que hay plugins instalados\n");
-				}
+				
 				
 			};
 			rutasDeploy(rutaModulesLocal);
