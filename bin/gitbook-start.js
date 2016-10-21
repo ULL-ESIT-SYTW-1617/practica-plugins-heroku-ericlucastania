@@ -14,7 +14,7 @@ var replugin = /^gitbook-start-plugin/g;
 var de = argv.d || argv.deploy;
 	
 
-var dep = '/'+ de + '/g';
+var dep = '/gitbook-start-plugin-'+ de + '/g';
 //Rutas interesantes
 var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
 
