@@ -196,7 +196,6 @@ gitConfig(function (err, config) {
 				
 				
 			};
-			rutasDeploy(rutaModulesLocal);
 			rutasDeploy(rutaModulesGlobal);
 		}
 		
