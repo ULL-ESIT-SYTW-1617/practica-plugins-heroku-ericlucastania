@@ -25,7 +25,7 @@ var rutaModulesGlobal = path.join(__dirname, '..','..');
 var rutaModulesLocal = path.join(direct,'node_modules');
 
 //Cosas de Tania
-var opcionesValidas = ['d', 'a', 'r','dir','deploy','e'];
+var opcionesValidas = ['d', 'a', 'r','dir','deploy','e','v'];
 var flag = true;
 var finish = false;
 
