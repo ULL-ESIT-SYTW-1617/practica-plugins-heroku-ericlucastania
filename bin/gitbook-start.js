@@ -166,22 +166,26 @@ gitConfig(function (err, config) {
 		    		var names = fs.readdirSync(ruta);
 				}
 				catch(err) {
-				}
-				
-				if(names){
-					for (var i in names){
-						if(names[i].match(dep)){
-							correctNames.push(names[i]);
-						}
-					
-					}
-					
-				}
-				else{
 					console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
 						"  Sitúese en el libro.\n"+
 						"  Compruebe que hay plugins instalados\n");
 				}
+				try{
+					if(names){
+						for (var i in names){
+							if(names[i].match(dep)){
+								correctNames.push(names[i]);
+							}
+						
+						}
+					}
+				}
+				catch(error){
+					console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
+						"  Sitúese en el libro.\n"+
+						"  Compruebe que hay plugins instalados\n");
+				}
+				
 				if(correctNames){
 					for(var j in correctNames){
 						try {
