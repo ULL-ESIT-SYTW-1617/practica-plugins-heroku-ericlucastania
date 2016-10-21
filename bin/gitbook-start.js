@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 
-
+var pck = require(path.join(__dirname, '..','package.json'));
 var path = require('path');
 var ejs = require('ejs');
 var fs = require('fs-extra');
@@ -30,7 +30,6 @@ var finish = false;
 
 //variables funcionamiento
 var sum=0;
-
 var defaultname,defaultemail;
 
 
@@ -66,36 +65,49 @@ gitConfig(function (err, config) {
 	defaultname = config.user.name;
 	defaultemail = config.user.email;
 	
-	//ejecutar todos los initialize globales y locales
-	var rutas = (ruta) => {
-		var correctNames = [];
-		try {
-    		var names = fs.readdirSync(ruta);
-		}
-		catch(err) {
-		    
-		}
-		
-		if(names){
-			for (var i in names){
-				if(names[i].match(replugin)){
-					correctNames.push(names[i]);
-				}
-			}
-		}
-		if(correctNames){
-			for(var j in correctNames){
-				var requireNames = require(correctNames[j]);
-				requireNames.initialize();
-			}
-		}
-		
-	};
-	rutas(rutaModulesGlobal);
-	rutas(rutaModulesLocal);
 	
 	
 	if (flag){
+		
+			
+		// Si la opcion es -v,imprime version
+		if(argv.v){
+			console.log(pck.version);
+		}
+		
+		
+		
+		//ejecutar todos los initialize globales y locales si no hay argumentos
+		
+		if(argv.length == 0 || argv.dir){
+			
+			var rutas = (ruta) => {
+				var correctNames = [];
+				try {
+		    		var names = fs.readdirSync(ruta);
+				}
+				catch(err) {
+				    
+				}
+				
+				if(names){
+					for (var i in names){
+						if(names[i].match(replugin)){
+							correctNames.push(names[i]);
+						}
+					}
+				}
+				if(correctNames){
+					for(var j in correctNames){
+						var requireNames = require(correctNames[j]);
+						requireNames.initialize();
+					}
+				}
+				
+			};
+			rutas(rutaModulesGlobal);
+			rutas(rutaModulesLocal);
+		}
 		
 		// Creamos la carpeta
 		
@@ -145,8 +157,40 @@ gitConfig(function (err, config) {
 		
 		recursive(names,'');
 		finish = true;
+		
+		//deploys
+		if(de){
+			var correctNames = [];
+			var rutasDeploy = (ruta) => {
+				try {
+		    		var names = fs.readdirSync(ruta);
+				}
+				catch(err) {
+				}
+				
+				if(names){
+					for (var i in names){
+						if(names[i].match(dep)){
+							correctNames.push(names[i]);
+						}
+						else{
+							console.log("No se ha encontrado plugins de despliegue con este nombre");
+						}
+					}
+				}
+				if(correctNames){
+					for(var j in correctNames){
+						var requireNames = require(correctNames[j]);
+						requireNames.deploy();
+					}
+				}
+				
+			};
+			rutasDeploy(rutaModulesLocal);
+			rutasDeploy(rutaModulesGlobal);
+		}
+		
 	}
-	
 	
 	else {
 		console.log("gitbook-start [OPTIONS]\n"+
@@ -154,43 +198,14 @@ gitConfig(function (err, config) {
 		"-a autor del libro a crear node gitbook-star -a AutorDelLibro\n"+
 		"-e email del autor del libro node gitbook-star -e eric.ramos.suarez@gmail.com\n"+
 		"-r repositorio github contra el que se va a trabajar -r nameRepo\n"+
+		"-v muestra la version del paquete gitbook-start -v\n"+
 		"-d --deploy deploy en el que se quiera ejecutar gitbook-star -d iaas\n"+
 		"-h muestra ayuda sobre las opciones disponibles\n");
 	}
 	
 	
-	//deploys
 	
-	
-	if(finish && de){
-		var correctNames = [];
-		var rutasDeploy = (ruta) => {
-			try {
-	    		var names = fs.readdirSync(ruta);
-			}
-			catch(err) {
-			}
-			
-			if(names){
-				for (var i in names){
-					if(names[i].match(dep)){
-						correctNames.push(names[i]);
-					}
-				}
-			}
-			if(correctNames){
-				for(var j in correctNames){
-					var requireNames = require(correctNames[j]);
-					requireNames.deploy();
-				}
-			}
-			
-		};
-		rutasDeploy(rutaModulesLocal);
-		rutasDeploy(rutaModulesGlobal);
-	}
-	
-	
+
 });
 
 
