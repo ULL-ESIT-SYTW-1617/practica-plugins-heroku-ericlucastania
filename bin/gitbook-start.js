@@ -56,7 +56,10 @@ if ((sum !=0) && (sum%2 == 0)) {
 }
 sum += 2;
 }
-  
+
+
+
+
 
 gitConfig(function (err, config) {
 	
@@ -76,11 +79,9 @@ gitConfig(function (err, config) {
 			console.log(pck.version);
 		}
 		
-		
-		
+	
 		//ejecutar todos los initialize globales y locales si no hay argumentos
-		console.log(argv.length);
-		if(argv.length == undefined || argv.dir){
+		if(Object.keys(argv).length == 1 ||argv.dir){
 			
 			var rutas = (ruta) => {
 				var correctNames = [];
@@ -160,7 +161,7 @@ gitConfig(function (err, config) {
 			finish = true;
 		}
 		//deploys
-		if(de){
+		else if(de){
 			var correctNames = [];
 			var rutasDeploy = (ruta) => {
 				try {
