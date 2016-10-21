@@ -10,7 +10,6 @@ var gitConfig = require('git-config');
 
 
 var re = /.ejs/g;
-console.log(re);
 var replugin = /^gitbook-start-plugin/g;
 var de = argv.d || argv.deploy;
 	
