@@ -1,0 +1,82 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/ubuntu/.nvm/versions/node/v4.5.0/bin/node',
+1 verbose cli   '/home/ubuntu/.nvm/versions/node/v4.5.0/bin/npm',
+1 verbose cli   'version',
+1 verbose cli   'patch' ]
+2 info using npm@2.15.9
+3 info using node@v4.5.0
+4 info git [ 'status', '--porcelain' ]
+5 info preversion gitbook-start-elt@0.3.56
+6 verbose version.write data { name: 'gitbook-start-elt',
+6 verbose version.write   version: '0.3.56',
+6 verbose version.write   description: 'Repo to start gitbook proyect',
+6 verbose version.write   main: 'index.js',
+6 verbose version.write   scripts:
+6 verbose version.write    { 'generate-gitbook': './scripts/losh generate-gitbook',
+6 verbose version.write      'generate-wiki': './scripts/losh generate-wiki',
+6 verbose version.write      build: 'npm install && npm i gitbook-cli && npm run generate-gitbook && npm run generate-wiki',
+6 verbose version.write      'deploy-gitbook': './scripts/losh deploy-gitbook',
+6 verbose version.write      'deploy-wiki': './scripts/losh deploy-wiki',
+6 verbose version.write      deploy: 'npm run build && npm run deploy-gitbook && npm run deploy-wiki',
+6 verbose version.write      version: './scripts/losh version',
+6 verbose version.write      test: 'echo "Error: no test specified" && exit 1' },
+6 verbose version.write   iaas:
+6 verbose version.write    { user: 'usuario',
+6 verbose version.write      ip: '10.6.128.159',
+6 verbose version.write      command: 'cd /home/usuario/Sytw/Styw3;git pull origin master' },
+6 verbose version.write   repository:
+6 verbose version.write    { type: 'git',
+6 verbose version.write      url: 'https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1',
+6 verbose version.write      wiki: 'https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1/wiki' },
+6 verbose version.write   keywords: [ 'gitbook', 'start', 'ericlucastania' ],
+6 verbose version.write   bin: { 'gitbook-start': './bin/gitbook-start.js' },
+6 verbose version.write   author: 'Eric Ramos, Lucas Ruiz, Tania Gonzalez',
+6 verbose version.write   license: 'MIT',
+6 verbose version.write   bugs: { url: 'https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1/issues' },
+6 verbose version.write   homepage: 'https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1/blob/master/README.md',
+6 verbose version.write   devDependencies: {},
+6 verbose version.write   dependencies:
+6 verbose version.write    { async: '^1.4.0',
+6 verbose version.write      ejs: '^2.5.2',
+6 verbose version.write      'fs-extra': '^0.22.1',
+6 verbose version.write      'gh-pages': '^0.3.1',
+6 verbose version.write      'git-config': '0.0.7',
+6 verbose version.write      gitbook: '^2.1.0',
+6 verbose version.write      'gitbook-cli': '^0.3.4',
+6 verbose version.write      gulp: '^3.9.1',
+6 verbose version.write      'gulp-ejs': '^2.2.1',
+6 verbose version.write      minimist: '^1.2.0' } } to package.json
+7 info version gitbook-start-elt@0.3.56
+8 verbose unsafe-perm in lifecycle true
+9 info gitbook-start-elt@0.3.56 Failed to exec version script
+10 verbose stack Error: gitbook-start-elt@0.3.56 version: `./scripts/losh version`
+10 verbose stack spawn ENOENT
+10 verbose stack     at ChildProcess.<anonymous> (/home/ubuntu/.nvm/versions/node/v4.5.0/lib/node_modules/npm/lib/utils/spawn.js:17:16)
+10 verbose stack     at emitTwo (events.js:87:13)
+10 verbose stack     at ChildProcess.emit (events.js:172:7)
+10 verbose stack     at maybeClose (internal/child_process.js:829:16)
+10 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+11 verbose pkgid gitbook-start-elt@0.3.56
+12 verbose cwd /home/ubuntu/workspace
+13 error Linux 4.2.0-c9
+14 error argv "/home/ubuntu/.nvm/versions/node/v4.5.0/bin/node" "/home/ubuntu/.nvm/versions/node/v4.5.0/bin/npm" "version" "patch"
+15 error node v4.5.0
+16 error npm  v2.15.9
+17 error file sh
+18 error code ELIFECYCLE
+19 error errno ENOENT
+20 error syscall spawn
+21 error gitbook-start-elt@0.3.56 version: `./scripts/losh version`
+21 error spawn ENOENT
+22 error Failed at the gitbook-start-elt@0.3.56 version script './scripts/losh version'.
+22 error This is most likely a problem with the gitbook-start-elt package,
+22 error not with npm itself.
+22 error Tell the author that this fails on your system:
+22 error     ./scripts/losh version
+22 error You can get information on how to open an issue for this project with:
+22 error     npm bugs gitbook-start-elt
+22 error Or if that isn't available, you can get their info via:
+22 error
+22 error     npm owner ls gitbook-start-elt
+22 error There is likely additional logging output above.
+23 verbose exit [ 1, true ]
