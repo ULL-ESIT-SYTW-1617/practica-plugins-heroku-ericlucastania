@@ -1,5 +1,4 @@
 {
-
   "name": "gitbook-start-elt",
   "version": "0.3.55",
   "description": "Repo to start gitbook proyect",
@@ -14,7 +13,7 @@
     "version": "./scripts/losh version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "iaas":{
+  "iaas": {
     "user": "usuario",
     "ip": "10.6.128.159",
     "command": "cd /home/usuario/Sytw/Styw3;git pull origin master"
@@ -38,20 +37,10 @@
     "url": "https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1/issues"
   },
   "homepage": "https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1/blob/master/README.md",
-  "devDependencies": {
-    "async": "^1.4.0",
-    "ejs": "^2.5.2",
-    "fs": "0.0.1-security",
-    "fs-extra": "^0.22.1",
-    "gh-pages": "^0.3.1",
-    "gitbook": "^2.1.0",
-    "gitbook-cli": "^0.3.4",
-    "minimist": "^1.2.0"
-  },
+  "devDependencies": {},
   "dependencies": {
     "async": "^1.4.0",
     "ejs": "^2.5.2",
-    "fs": "0.0.1-security",
     "fs-extra": "^0.22.1",
     "gh-pages": "^0.3.1",
     "git-config": "0.0.7",

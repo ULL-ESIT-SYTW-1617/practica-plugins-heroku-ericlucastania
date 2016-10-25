@@ -6,25 +6,21 @@ var path = require('path');
 var ejs = require('ejs');
 var fs = require('fs-extra');
 var argv = require('minimist')(process.argv.slice(2));
-var pck = require(path.join(__dirname, '..','package.json'));
 var gitConfig = require('git-config');
 
 
+var pck = require(path.join(__dirname, '..','package.json'));
 var re = /.ejs/g;
 var replugin = /^gitbook-start-plugin/g;
-var de = argv.d || argv.deploy;
 	
 
-var del = 'gitbook-start-plugin-'+ de;
-var dep = new RegExp(del);
+
 //Rutas interesantes
 var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
-
 var rutaTemplate = path.join(__dirname, '..','template');
 var rutaModulesGlobal = path.join(__dirname, '..','..');
 var rutaModulesLocal = path.join(direct,'node_modules');
 
-//Cosas de Tania
 var opcionesValidas = ['d', 'a', 'r','dir','deploy','e','v'];
 var flag = true;
 
@@ -38,22 +34,22 @@ var defaultname,defaultemail;
 
 // Empezamos comprobando las opciones validas
 function comprobarOpcion(opc) {
-for (var i=0; i<opcionesValidas.length; i++) {
-	if ((opcionesValidas[i] == opc))
-		return true;
-}
-return false;
+	for (var i=0; i<opcionesValidas.length; i++) {
+		if ((opcionesValidas[i] == opc))
+			return true;
+	}
+	return false;
 }
 
 // Recorremos argumentos con minimist
 for (var i in argv) {
-if ((sum !=0) && (sum%2 == 0)) {
-	if(comprobarOpcion(i)==false){
-		flag = false;
-		break;
+	if ((sum !=0) && (sum%2 == 0)) {
+		if(comprobarOpcion(i)==false){
+			flag = false;
+			break;
+		}
 	}
-}
-sum += 2;
+	sum += 2;
 }
 
 
@@ -71,7 +67,6 @@ gitConfig(function (err, config) {
 	
 	
 	if (flag){
-		
 			
 		// Si la opcion es -v,imprime version
 		if(argv.v){
@@ -158,51 +153,6 @@ gitConfig(function (err, config) {
 			
 			recursive(names,'');
 		}
-		//deploys
-		else if(de){
-			var correctNames = [];
-			var rutasDeploy = (ruta) => {
-				try {
-		    		var names = fs.readdirSync(ruta);
-				}
-				catch(err) {
-					console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
-						"  Sitúese en el libro.\n"+
-						"  Compruebe que hay plugins instalados\n");
-				}
-				try{
-					if(names){
-						for (var i in names){
-							if(names[i].match(dep)){
-								correctNames.push(names[i]);
-							}
-						
-						}
-					}
-				}
-				catch(error){
-					console.log("No se ha encontrado plugins de despliegue con este nombre. Posibles fallos:\n"+
-						"  Sitúese en el libro.\n"+
-						"  Compruebe que hay plugins instalados\n");
-				}
-				
-				if(correctNames){
-					for(var j in correctNames){
-						try {
-				    		var requireNames = require(correctNames[j]);
-				    		requireNames.deploy();
-						}
-						catch(err) {
-							console.log("No se ha podido encontrar el modulo");
-						}
-					}
-				}
-				
-				
-			};
-			rutasDeploy(rutaModulesGlobal);
-		}
-		
 	}
 	
 	else {
@@ -216,11 +166,8 @@ gitConfig(function (err, config) {
 		"-h muestra ayuda sobre las opciones disponibles\n");
 	}
 	
-	
-	
+
 
 });
-
-
 	
 
