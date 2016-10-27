@@ -2,11 +2,10 @@
 
 module.exports = {    
         
-        initializes: (path,direct,fs) =>{
+        iniDeplo: (path,direct,fs,option) =>{
             //ejecutar todos los initialize globales y locales si no hay argumentos
-			
 			var rutaModulesGlobal = path.join(__dirname, '..','..');
-		    var rutaModulesLocal = path.join(direct,'node_modules');
+		    //var rutaModulesLocal = path.join(direct,'node_modules');
 			
 			var replugin = /^gitbook-start-plugin/g;
 			
@@ -29,13 +28,14 @@ module.exports = {
 				if(correctNames){
 					for(var j in correctNames){
 						var requireNames = require(correctNames[j]);
-						requireNames.initialize();
+						requireNames[option]();
 					}
 				}
 				
 			};
 			rutas(rutaModulesGlobal);
-			rutas(rutaModulesLocal);
-        }
+			//rutas(rutaModulesLocal);
+        },
+        
 };
         
