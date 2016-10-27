@@ -2,7 +2,7 @@
 
 module.exports = {    
         
-        iniDeplo: (path,direct,fs,option) =>{
+        execute: (path,direct,fs,option) =>{
             //ejecutar todos los initialize globales y locales si no hay argumentos
 			var rutaModulesGlobal = path.join(__dirname, '..','..');
 		    //var rutaModulesLocal = path.join(direct,'node_modules');
