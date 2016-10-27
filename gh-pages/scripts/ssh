@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+CMDDESC="Generate ssh"
+
+
+
+ssh usuario@10.6.128.159 'cd /home/usuario/Sytw/Styw3;git pull'
+
+
+
