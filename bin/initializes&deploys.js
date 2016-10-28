@@ -2,12 +2,13 @@
 
 module.exports = {    
         
-        execute: (path,direct,fs,option) =>{
+        execute: (path,direct,fs,option,d,deploy) =>{
             //ejecutar todos los initialize globales y locales si no hay argumentos
 			var rutaModulesGlobal = path.join(__dirname, '..','..');
 		    //var rutaModulesLocal = path.join(direct,'node_modules');
-			
-			var replugin = /^gitbook-start-plugin/g;
+			var argum = d || deploy;
+			var expr = "^gitbook-start-plugin" + argum;
+			var replugin = new RegExp(expr,"g");
 			
 			var rutas = (ruta) => {
 				var correctNames = [];

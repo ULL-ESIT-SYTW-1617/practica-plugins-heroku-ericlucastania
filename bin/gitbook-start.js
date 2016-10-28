@@ -32,7 +32,7 @@ gitConfig(function (err, config) { //PARA RECOGER OPCIONES POR DEFECTO
 	
 	
 	if (comprobar.comp(argv)){
-		if(argv.d){iniDeplo.execute(path,direct,fs,'initialize');}
+		if(argv.d){iniDeplo.execute(path,direct,fs,argv.d,argv.deploy);}
 		renderTemplate.rend(argv,path,fs,defaultname,defaultemail,direct);
 	}
 	else {
