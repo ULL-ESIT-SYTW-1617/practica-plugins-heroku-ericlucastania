@@ -33,7 +33,7 @@ gitConfig(function (err, config) { //PARA RECOGER OPCIONES POR DEFECTO
 	
 	if (comprobar.comp(argv)){
 		if(argv.d || argv.deploy){iniDeplo.execute(path,direct,fs,argv.d,argv.deploy);}
-		renderTemplate.rend(argv,path,fs,defaultname,defaultemail,direct);
+		if((Object.keys(argv).length == 1 ||argv.dir))renderTemplate.rend(argv,path,fs,defaultname,defaultemail,direct);
 	}
 	else {
 			console.log("gitbook-start [OPTIONS]\n"+
