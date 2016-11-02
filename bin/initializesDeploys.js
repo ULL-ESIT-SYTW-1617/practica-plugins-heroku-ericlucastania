@@ -2,12 +2,12 @@
 
 module.exports = {    
         
-        execute: (path,direct,fs,option,d,deploy) =>{
+        execute: (path,direct,fs,d,deploy) =>{
             //ejecutar todos los initialize globales y locales si no hay argumentos
 			var rutaModulesGlobal = path.join(__dirname, '..','..');
 		    //var rutaModulesLocal = path.join(direct,'node_modules');
 			var argum = d || deploy;
-			var expr = "^gitbook-start-plugin" + argum;
+			var expr = "^gitbook-start-plugin-" + argum;
 			var replugin = new RegExp(expr,"g");
 			
 			var rutas = (ruta) => {
@@ -16,7 +16,7 @@ module.exports = {
 		    		var names = fs.readdirSync(ruta);
 				}
 				catch(err) {
-				    
+				    console.log("No se encontró el módulo, vuelva a instalarlo");
 				}
 				
 				if(names){
@@ -29,13 +29,14 @@ module.exports = {
 				if(correctNames){
 					for(var j in correctNames){
 						var requireNames = require(correctNames[j]);
-						requireNames[option]();
+						requireNames.initialize();
 					}
 				}
 				
 			};
-			rutas(rutaModulesGlobal);
 			//rutas(rutaModulesLocal);
+			rutas(rutaModulesGlobal);
+			
         },
         
 };
