@@ -32,7 +32,6 @@ Este es el principal
 
 **6. Ejecuta el gulp creado**
 
-Recuerde que si ejecuta un pull deberá tener clonado primero el repositorio en la máquina del iaas
 
 ```gulp deploy-heroku```
 
