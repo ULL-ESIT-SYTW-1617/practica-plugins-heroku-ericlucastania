@@ -34,7 +34,7 @@ Este es el principal
 
 Recuerde que si ejecuta un pull deberá tener clonado primero el repositorio en la máquina del iaas
 
-```gulp deploy-iaas```
+```gulp deploy-heroku```
 
 #### Explicación
 
@@ -60,6 +60,7 @@ elegido en el package.json.
 * [NPM](https://www.npmjs.com/package/gitbook-start-elt)
 * [Enlace al Repositorio de la práctica](https://github.com/ULL-ESIT-SYTW-1617/practica-plugins-heroku-ericlucastania)
 * [Enlace a PLUGIN](https://github.com/ULL-ESIT-SYTW-1617/gitbook-start-heroku-ericlucastania.git)
+* [Descripción de la tarea campus](https://casianorodriguezleon.gitbooks.io/ull-esit-1617/content/practicas/practicaplugin2.html)
 * [Enlace a NPM PLUGIN](https://www.npmjs.com/package/gitbook-start-plugin-heroku-ericlucastania)
 
 ## Componentes del grupo de trabajo
