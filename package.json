@@ -26,10 +26,6 @@
   },
   "author": "Eric Ramos, Lucas Ruiz, Tania Gonzalez",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1/issues"
-  },
-  "homepage": "https://github.com/ULL-ESIT-SYTW-1617/nueva-funcionalidad-para-el-paquete-npm-plugins-ericlucastania-1/blob/master/README.md",
   "devDependencies": {},
   "dependencies": {
     "async": "^1.4.0",
