@@ -9,6 +9,8 @@ Este es el principal
 
 ## Pasos a ejecutar 
 
+ANTES DE EMPEZAR ASEGÚRATE DE TENER EL TOOLBET DE HEROKU INSTALADO
+
 **1. Instala nuestro paquete de forma global**
 
 ```npm install -g gitbook-start-elt```
