@@ -29,8 +29,12 @@ Este es el principal
 
 ```gitbook-start -d heroku``` !! También puedes usar la opción --deploy
 
+**6. Ejecuta un npm install**
 
-**6. Ejecuta el gulp creado**
+```npm install```
+
+
+**7. Ejecuta el gulp creado**
 
 
 ```gulp deploy-heroku```

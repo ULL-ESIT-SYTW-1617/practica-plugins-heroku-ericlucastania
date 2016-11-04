@@ -73,6 +73,5 @@ module.exports = {
 		recursive(names,'');
 		cd(dir);
 		exec('git init');
-		exec('npm install');
 	}
 };
