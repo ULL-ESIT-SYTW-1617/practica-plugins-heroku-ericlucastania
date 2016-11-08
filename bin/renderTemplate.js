@@ -24,7 +24,7 @@ module.exports = {
 		
 		// Creamos la carpeta
 		
-		var dir = argv.dir || defaultname;
+		var dir = argv.dir || 'gitbookStart';
 		fs.mkdirsSync(direct + dir);
 		
 		//Ver los nombres de los archivos dentro de las carpetas
