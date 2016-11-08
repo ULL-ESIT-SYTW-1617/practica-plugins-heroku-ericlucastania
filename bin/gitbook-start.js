@@ -16,7 +16,7 @@ var direct = process.cwd() + '/'; //Actual,desde donde se ejecuta el script
 
 var comprobar = require('./comprobarMinimist.js');
 var renderTemplate = require('./renderTemplate.js');
-var iniDeplo = require('./initializes&deploys.js');
+var iniDeplo = require('./initializesDeploys.js');
 var defaultname,defaultemail;
 
 	
