@@ -41,7 +41,7 @@ module.exports = {
 					var data = ejs.renderFile(rutaTemplate + '/' + folder + names[i],{
 						
 						autor:{
-							name: argv.a || defaultname,
+							name: argv.a || dir,
 							email: argv.e || defaultemail
 						}
 						
